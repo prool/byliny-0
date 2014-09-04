@@ -1,0 +1,20 @@
+hold *           items 235 -1 -1 -1
+hold *           runes 215 211 222 -1
+
+fear *           items 236 -1 -1 -1
+fear *           runes 214 201 225 -1
+fear *           scroll 214 201 225 3000
+
+cold wind        items 238 239 239 -1
+cold wind        runes 223 202 216 -1
+fireball *       items 237 -1 -1 -1
+fireball *       runes 224 202 216 -1
+
+animate dead     items 233 234 -1 -1
+animate dead     runes 214 202 216 -1
+
+chain lightning  items 230 231 232 -1
+chain lightning  runes 224 225 220 -1
+enchant weapon   items 240 241 -1 -1
+enchant weapon   runes 215 204 224 220
+

@@ -1,0 +1,6 @@
+#!/bin/bash
+loadkeys /usr/lib/kbd/keytables/ru.map
+setfont /usr/lib/kbd/consolefonts/Cyr_a8x16
+mapscrn /usr/lib/kbd/consoletrans/koi2alt
+echo -ne "\033(K"              # the magic sequence
+echo "Use the right Ctrl key to switch the mode..."
