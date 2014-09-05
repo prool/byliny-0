@@ -110,7 +110,7 @@ sacrifice *      ........!..  6 18
 cold wind        .!.........  5 15
 implosion *      .!.........  8 24
 call lightning   .!....!!!..  2 4
-color spray      .!.........  5 15
+;color spray      .!.........  5 15	; prool
 light damage     !..........  1 1
 serious damage   !..........  3 8
 critic damage    !..........  4 12

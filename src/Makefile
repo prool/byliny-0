@@ -1,6 +1,5 @@
-# Generated automatically from Makefile.in by configure.
-# CircleMUD 3.0 Makefile.in - Makefile template used by 'configure'
-#
+# makefile for cygwin/windows environment. by prool (www.prool.kharkov.org)
+# 19-auh-2010
 
 # C compiler to use
 CC = gcc
@@ -47,9 +46,9 @@ CXREF_FILES = act.comm.c act.informative.c act.item.c act.movement.c \
 
 default: all
 
-all: .accepted
+all:
 	$(MAKE) $(BINDIR)/circle
-	$(MAKE) utils
+#	$(MAKE) utils
 
 .accepted:
 	@./licheck less

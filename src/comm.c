@@ -1723,7 +1723,8 @@ int new_descriptor(int s)
   newd->next = descriptor_list;
   descriptor_list = newd;
 
-  SEND_TO_Q("Using keytable\r\n"
+  SEND_TO_Q("Byliny-0. Compiled by prool (www.prool.kharkov.org)\r\n\r\n"
+	    "Using keytable\r\n"
             "  0) Koi-8\r\n"
             "  1) Alt\r\n"
             "  2) Windows(JMC)\r\n"

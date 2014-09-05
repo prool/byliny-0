@@ -437,7 +437,7 @@ void weather_change(void)
    case 11:// Dec
          diff = (weather_info.pressure > 985 ? -2 : 2);
          break;
-   default:
+   default: ;
   }
 
   // if ((time_info.month >= 9) && (time_info.month <= 16))

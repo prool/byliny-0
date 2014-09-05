@@ -449,7 +449,7 @@ void do_stat_room(struct char_data * ch)
   for (found = 0, k = rm->people; k; k = k->next_in_room)
       {if (!CAN_SEE(ch, k))
           continue;
-       sprintf(buf2, "%s %s(%s)", found++ ? ",
+       sprintf(buf2, "%s %s(%s)", found++ ? ",\
                " : "",GET_NAME(k),(!IS_NPC(k) ? "PC" : (!IS_MOB(k) ? "NPC" : "MOB")));
        strcat(buf, buf2);
        if (strlen(buf) >= 62)
