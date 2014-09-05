@@ -949,7 +949,7 @@ void Crash_calc_objects(int index, int storing)
 	     fclose(fl);
 	    }
           log("%s All objects = %d", buf, count);
-          fclose(fl);
+          // fclose(fl); // prool: commented, bikoz crash here (two fclose!)
 	 }
      }
 }
