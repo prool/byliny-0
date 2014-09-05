@@ -1,7 +1,6 @@
 # Object files
 *.o
 *.ko
-*.obj
 *.elf
 
 # Libraries
@@ -21,3 +20,7 @@
 *.i*86
 *.x86_64
 *.hex
+players.lst
+.crash
+bin/circle
+lib/plrs/players.*
