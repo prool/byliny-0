@@ -8,6 +8,10 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
+#include <sys/socket.h> // prool
+#include <netinet/in.h> // prool
+#include <arpa/inet.h> // prool
+
 #include "conf.h"
 #include "sysdep.h"
 

@@ -8,6 +8,9 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
+#include <unistd.h> // prool
+#include <crypt.h> // prool
+
 #include "conf.h"
 #include "sysdep.h"
 
@@ -66,7 +69,7 @@ void   appear(struct char_data *ch);
 void   reset_zone(zone_rnum zone);
 void   roll_real_abils(struct char_data *ch);
 int    parse_class(char arg);
-struct char_data *find_char(int n);
+struct char_data *find_char(long);
 void   load_pkills(struct char_data *ch);
 void   rename_char(struct char_data *ch, char *oname);
 void   save_pkills(struct char_data *ch);

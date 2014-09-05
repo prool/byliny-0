@@ -8,6 +8,8 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
+#include <unistd.h> // prool
+
 /*
  * This file attempts to concentrate most of the code which must be changed
  * in order for new classes to be added.  If you're adding a new class,
@@ -27,6 +29,8 @@
 #include "interpreter.h"
 #include "handler.h"
 #include "constants.h"
+
+void _exit(int); // prool
 
 extern int     siteok_everyone;
 extern struct  spell_create_type spell_create[];

@@ -51,7 +51,7 @@ int  inc_pkill_group(struct char_data *victim, struct char_data *killer, int pki
 char *diag_weapon_to_char(struct obj_data *obj, int show_wear);
 void create_rainsnow(int *wtype, int startvalue, int chance1, int chance2, int chance3);
 int  calc_loadroom(struct char_data *ch);
-void go_create_weapon(struct char_data *ch, struct obj_data *obj, int obj_type);
+void go_create_weapon(struct char_data *ch, struct obj_data *obj, int obj_type, int); //prool
 ACMD(do_tell);
 
 int  what_sky = SKY_CLOUDLESS;
@@ -497,7 +497,7 @@ ASPELL(spell_locate_object)
 }
 
 ASPELL(spell_create_weapon)
-{ go_create_weapon(ch,NULL,what_sky);
+{ go_create_weapon(ch,NULL,what_sky, 0); // prool
 }
 
 

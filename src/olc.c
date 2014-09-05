@@ -380,20 +380,20 @@ counter,(zone_table[counter].number * 100), zone_table[counter].top);
  
  void olc_add_to_save_list(int zone, byte type)
   {
-   struct olc_save_info *new;
+   struct olc_save_info *New;
  
    /*
     * Return if it's already in the list.
     */
-   for (new = olc_save_list; new; new = new->next)
-     if ((new->zone == zone) && (new->type == type))
+   for (New = olc_save_list; New; New = New->next)
+     if ((New->zone == zone) && (New->type == type))
        return;
  
-   CREATE(new, struct olc_save_info, 1);
-   new->zone = zone;
-   new->type = type;
-   new->next = olc_save_list;
-   olc_save_list = new;
+   CREATE(New, struct olc_save_info, 1);
+   New->zone = zone;
+   New->type = type;
+   New->next = olc_save_list;
+   olc_save_list = New;
    }
 
 

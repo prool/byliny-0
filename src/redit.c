@@ -126,14 +126,14 @@ void redit_setup_existing(struct descriptor_data *d, int real_num)
    * Extra descriptions, if necessary.
    */
   if (world[real_num].ex_description) 
-     {struct extra_descr_data *this, *temp, *temp2;
+     {struct extra_descr_data *This, *temp, *temp2;
       CREATE(temp, struct extra_descr_data, 1);
 
       room->ex_description = temp;
-      for (this = world[real_num].ex_description; this; this = this->next) 
-          {temp->keyword     = (this->keyword ? str_dup(this->keyword) : NULL);
-           temp->description = (this->description ? str_dup(this->description) : NULL);
-           if (this->next) 
+      for (This = world[real_num].ex_description; This; This = This->next) 
+          {temp->keyword     = (This->keyword ? str_dup(This->keyword) : NULL);
+           temp->description = (This->description ? str_dup(This->description) : NULL);
+           if (This->next) 
               {CREATE(temp2, struct extra_descr_data, 1);
 	           temp->next = temp2;
 	           temp = temp2;
@@ -206,7 +206,7 @@ void redit_save_internally(struct descriptor_data *d)
       for (i = 0; i <= top_of_world; i++) 
           {if (!found) 
               {/*
-	            * Is this the place? 
+	            * Is This the place? 
 	            */
 	           if (world[i].number > OLC_NUM(d)) 
 	              {found = TRUE;
@@ -222,7 +222,7 @@ void redit_save_internally(struct descriptor_data *d)
 	               new_world[i + 1] = world[i];
 
 	               /*
-	                * People in this room must have their numbers moved up one.
+	                * People in This room must have their numbers moved up one.
 	                */
 	               for (temp_ch = world[i].people; temp_ch; temp_ch = temp_ch->next_in_room)
 	                   if (temp_ch->in_room != NOWHERE)
@@ -241,7 +241,7 @@ void redit_save_internally(struct descriptor_data *d)
            else 
               {/* Already been found. */
 	           /*
-	            * People in this room must have their in_rooms moved.
+	            * People in This room must have their in_rooms moved.
 	            */
 	           for (temp_ch = world[i].people; temp_ch; temp_ch = temp_ch->next_in_room)
 	               if (temp_ch->in_room != NOWHERE)
@@ -461,7 +461,7 @@ void redit_save_to_disk(int zone_num)
 void free_room(struct room_data *room)
 {
   int i;
-  struct extra_descr_data *this, *next;
+  struct extra_descr_data *This, *next;
 
   if (room->name)
      free(room->name);
@@ -484,13 +484,13 @@ void free_room(struct room_data *room)
   /*
    * Free extra descriptions.
    */
-  for (this = room->ex_description; this; this = next) 
-      {next = this->next;
-       if (this->keyword)
-          free(this->keyword);
-       if (this->description)
-          free(this->description);
-       free(this);
+  for (This = room->ex_description; This; This = next) 
+      {next = This->next;
+       if (This->keyword)
+          free(This->keyword);
+       if (This->description)
+          free(This->description);
+       free(This);
       }
 }
 
@@ -1071,7 +1071,7 @@ void redit_parse(struct descriptor_data *d, char *arg)
     break;
   }
   /*
-   * If we get this far, something has been changed.
+   * If we get This far, something has been changed.
    */
   OLC_VAL(d) = 1;
   redit_disp_menu(d);

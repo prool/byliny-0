@@ -48,7 +48,6 @@ extern room_rnum r_named_start_room;
 extern room_rnum r_unreg_start_room;
 
 #define MAKESIZE(number) (sizeof(struct save_info) + sizeof(struct save_time_info) * number)
-#define MAKEINFO(pointer, number) CREATE(pointer, char, MAKESIZE(number))
 #define SAVEINFO(number) ((player_table+number)->timer)
 #define SAVESIZE(number) (sizeof(struct save_info) +\
                           sizeof(struct save_time_info) * (player_table+number)->timer->rent.nitems)
@@ -799,7 +798,26 @@ void update_obj_file(void)
 void Crash_create_timer(int index, int num)
 {if (player_table[index].timer)
     free(player_table[index].timer);
- MAKEINFO((char *)player_table[index].timer, num);
+// prool:
+#define MAKEINFO(pointer, number) CREATE(pointer, char, MAKESIZE(number))
+// MAKEINFO((char *)player_table[index].timer, num);
+
+/*
+#define CREATE(result, type, number)  do {\
+	if ((number) * sizeof(char) <= 0)	\
+		log("SYSERR: Zero bytes or less requested at %s:%d.", __FILE__, __LINE__);	\
+	if (!((result) = (char *) calloc ((number), sizeof(char))))	\
+		{ perror("SYSERR: malloc failure"); abort(); } } while(0)
+*/
+
+// CREATE((char *)player_table[index].timer , char, MAKESIZE(num));
+// define CREATE(result, type, number)
+ do {
+	if ((MAKESIZE(num)) * sizeof(char) <= 0)	
+		log("SYSERR: Zero bytes or less requested at %s:%d.", __FILE__, __LINE__);	
+	if (!( player_table[index].timer = (void *) calloc ((MAKESIZE(num)), sizeof(char))))	
+		{ perror("SYSERR: malloc failure"); abort(); } } while(0);
+
  memset(player_table[index].timer,0,MAKESIZE(num));
 }
 

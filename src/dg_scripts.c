@@ -8,9 +8,10 @@
 *  $Revision: 3.25 $
 **************************************************************************/
 
+#include <unistd.h> // prool
+
 #include "conf.h"
 #include "sysdep.h"
-
  
 #include "structs.h"
 #include "dg_scripts.h"
@@ -44,7 +45,7 @@ extern struct index_data *mob_index;
 extern struct index_data *obj_index;
 extern struct time_info_data time_info;
 extern zone_rnum top_of_zone_table;
-struct zone_data *zone_table;
+extern struct zone_data *zone_table; // prool
 
 /* external functions */
 sh_int find_target_room(char_data * ch, char *rawroomstr);

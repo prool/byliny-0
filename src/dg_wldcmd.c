@@ -36,7 +36,7 @@ char_data *get_char_by_room(room_data *room, char *name);
 room_data *get_room(char *name);
 obj_data *get_obj_by_room(room_data *room, char *name);
 int  check_recipe_items(struct char_data * ch, int spellnum, int spelltype, int showrecipe);
-void char_dam_message(int dam, struct char_data *ch, struct char_data *victim, int attacktype);
+void char_dam_message(int dam, struct char_data *ch, struct char_data *victim, int attacktype, int mayflee); // prool
 #define WCMD(name)  \
     void (name)(room_data *room, char *argument, int cmd, int subcmd)
 
@@ -517,7 +517,7 @@ WCMD(do_wdamage)
            }
 
 	update_pos(ch);
-	char_dam_message(dam,ch,ch,TYPE_UNDEFINED);
+	char_dam_message(dam,ch,ch,TYPE_UNDEFINED, 0); // prool
 	if (GET_POS(ch) == POS_DEAD) 
 	   {if (!IS_NPC(ch)) 
 	       {sprintf(buf2, "%s killed by a trap at %s", GET_NAME(ch),

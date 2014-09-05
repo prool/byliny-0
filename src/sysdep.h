@@ -123,7 +123,7 @@ extern void abort (), exit ();
 #endif
 
 #ifdef HAVE_UNISTD_H
-# include <unistd.h>
+// # include <unistd.h>
 #endif
 
 /* Now, we #define POSIX if we have a POSIX system. */
@@ -555,7 +555,7 @@ struct in_addr {
 #endif
 
 #if defined(HAVE_INET_ADDR) && defined(NEED_INET_ADDR_PROTO)
-   unsigned long int inet_addr(const char *cp);
+   unsigned long int inet_addr(const char *cp); $$$prool$$$ 
 #endif
 
 #if defined(HAVE_INET_ATON) && defined(NEED_INET_ATON_PROTO)

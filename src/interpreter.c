@@ -10,6 +10,9 @@
 
 #define __INTERPRETER_C__
 
+#include <unistd.h> // prool
+#include <crypt.h> // prool
+
 #include "conf.h"
 #include "sysdep.h"
 

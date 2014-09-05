@@ -103,7 +103,7 @@ void oedit_setup_new(struct descriptor_data *d)
 
 void oedit_setup_existing(struct descriptor_data *d, int real_num)
 { int    i;
-  struct extra_descr_data *this, *temp, *temp2;
+  struct extra_descr_data *This, *temp, *temp2;
   struct obj_data *obj;
 
   /*
@@ -134,11 +134,11 @@ void oedit_setup_existing(struct descriptor_data *d, int real_num)
      {CREATE(temp, struct extra_descr_data, 1);
 
       obj->ex_description = temp;
-      for (this = obj_proto[real_num].ex_description; this; this = this->next) 
-          {temp->keyword = (this->keyword && *this->keyword) ? str_dup(this->keyword) : NULL;
-           temp->description = (this->description && *this->description) ?
-	                           str_dup(this->description) : NULL;
-           if (this->next) 
+      for (This = obj_proto[real_num].ex_description; This; This = This->next) 
+          {temp->keyword = (This->keyword && *This->keyword) ? str_dup(This->keyword) : NULL;
+           temp->description = (This->description && *This->description) ?
+	                           str_dup(This->description) : NULL;
+           if (This->next) 
               {CREATE(temp2, struct extra_descr_data, 1);
                temp->next = temp2;
                temp = temp2;
@@ -168,7 +168,7 @@ void oedit_setup_existing(struct descriptor_data *d, int real_num)
 void oedit_save_internally(struct descriptor_data *d)
 {
   int    i, shop, robj_num, found = FALSE, zone, cmd_no;
-  struct extra_descr_data *this, *next_one;
+  struct extra_descr_data *This, *next_one;
   struct obj_data *obj, *swap, *new_obj_proto;
   struct index_data *new_obj_index;
   struct descriptor_data *dsc;
@@ -179,8 +179,8 @@ void oedit_save_internally(struct descriptor_data *d)
   if ((robj_num = real_object(OLC_NUM(d))) >= 0) 
      {/*
        * We need to run through each and every object currently in the
-       * game to see which ones are pointing to this prototype.
-       * if object is pointing to this prototype, then we need to replace it
+       * game to see which ones are pointing to This prototype.
+       * if object is pointing to This prototype, then we need to replace it
        * with the new one.
        */
       log("[OEdit] Save object to mem %d",robj_num);
@@ -220,13 +220,13 @@ void oedit_save_internally(struct descriptor_data *d)
           if (obj_proto[robj_num].PNames[i])
              free(obj_proto[robj_num].PNames[i]); 
       if (obj_proto[robj_num].ex_description)
-         for (this = obj_proto[robj_num].ex_description; this; this = next_one) 
-             {next_one = this->next;
-	          if (this->keyword)
-	             free(this->keyword);
-	          if (this->description)
-	             free(this->description);
-	          free(this);
+         for (This = obj_proto[robj_num].ex_description; This; This = next_one) 
+             {next_one = This->next;
+	          if (This->keyword)
+	             free(This->keyword);
+	          if (This->description)
+	             free(This->description);
+	          free(This);
              }
       obj_proto[robj_num]             = *OLC_OBJ(d);
       obj_proto[robj_num].item_number = robj_num;
@@ -394,7 +394,7 @@ void oedit_save_to_disk(int zone_num)
       return;
      }
   /*
-   * Start running through all objects in this zone.
+   * Start running through all objects in This zone.
    */
   for (counter = zone_table[zone_num].number * 100;
        counter <= zone_table[zone_num].top; 
@@ -1807,7 +1807,7 @@ void oedit_parse(struct descriptor_data *d, char *arg)
 
      case 3:
          /*
-          * Only go to the next description if this one is finished.
+          * Only go to the next description if This one is finished.
           */
          if (OLC_DESC(d)->keyword && OLC_DESC(d)->description) 
             {struct extra_descr_data *new_extra;

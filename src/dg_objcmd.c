@@ -35,7 +35,7 @@ void die(struct char_data * ch, struct char_data *killer);
 room_data *get_room(char *name);
 void asciiflag_conv(char *flag, void *value);
 int  check_recipe_items(struct char_data * ch, int spellnum, int spelltype, int showrecipe);
-void char_dam_message(int dam, struct char_data *ch, struct char_data *victim, int attacktype);
+void char_dam_message(int dam, struct char_data *ch, struct char_data *victim, int attacktype, int); // prool
 #define OCMD(name)  \
    void (name)(obj_data *obj, char *argument, int cmd, int subcmd)
 
@@ -489,7 +489,7 @@ OCMD(do_odamage)
 	   }
 	GET_HIT(ch) -= dam;
 	update_pos(ch);
-	char_dam_message(dam,ch,ch,TYPE_UNDEFINED);
+	char_dam_message(dam,ch,ch,TYPE_UNDEFINED, 0); // prool
 	if (GET_POS(ch) == POS_DEAD) 
 	   {if (!IS_NPC(ch)) 
 	       {sprintf(buf2, "%s killed by a trap at %s", GET_NAME(ch),

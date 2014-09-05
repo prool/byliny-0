@@ -101,7 +101,7 @@ struct weather_data weather_info;       /* the infomation about the weather */
 struct player_special_data dummy_mob;   /* dummy spec area for mobs     */
 struct reset_q_type reset_q;    /* queue of zones to be reset    */
 int supress_godsapply = FALSE;
-const struct new_flag clear_flags = { {0,0,0,0} };
+extern const struct new_flag clear_flags = { {0,0,0,0} }; // prool
 // Добавлено Дажьбогом
 struct time_info_data *real_time_passed(time_t t2, time_t t1);
 /* local functions */
@@ -111,8 +111,8 @@ void setup_dir(FILE * fl, int room, int dir);
 void index_boot(int mode);
 void discrete_load(FILE * fl, int mode, char *filename);
 int check_object(struct obj_data *);
-void parse_trigger(FILE *fl, int virtual_nr);
-void parse_room(FILE * fl, int virtual_nr, int virtual);
+void parse_trigger(FILE *fl, int Virtual_nr);
+void parse_room(FILE * fl, int Virtual_nr, int Virtual);
 void parse_mobile(FILE * mob_f, int nr);
 char *parse_object(FILE * obj_f, int nr);
 void load_zones(FILE * fl, char *zonename);
@@ -189,7 +189,7 @@ void create_rainsnow(int *wtype, int startvalue, int chance1, int chance2, int c
 void name_from_drinkcon(struct obj_data * obj);
 void name_to_drinkcon(struct obj_data * obj, int type);
 void calc_easter(void);
-void calc_god_celebrate(struct char_data *ch);
+void calc_god_celebrate(void/*struct char_data *ch*/); // prool
 void do_start(struct char_data *ch, int newbie);
 int  calc_loadroom(struct char_data *ch);
 void die_follower(struct char_data *ch);
@@ -504,7 +504,7 @@ void reset_time(void)
   weather_info.week_day_poly = ((time_info.year * MONTHS_PER_YEAR + time_info.month) * DAYS_PER_MONTH + time_info.day) % POLY_WEEK_CYCLE;
   // Calculate Easter
   calc_easter();
-  calc_god_celebrate(NULL);
+  calc_god_celebrate(/*NULL*/);
 
   if (time_info.hours <  sunrise[time_info.month][0])
      weather_info.sunlight = SUN_DARK;
@@ -950,7 +950,7 @@ void index_boot(int mode)
     fscanf(index, "%s\n", buf1);
    }
   fclose(index);
-  // Create virtual room for zone
+  // Create Virtual room for zone
 
   // sort the help index
   if (mode == DB_BOOT_HLP)
@@ -1078,7 +1078,7 @@ char fread_letter(FILE *fp)
 }
 
 /* load the rooms */
-void parse_room(FILE * fl, int virtual_nr, int virtual)
+void parse_room(FILE * fl, int Virtual_nr, int Virtual)
 {
   static int room_nr = 0, zone = 0;
   int t[10], i;
@@ -1086,24 +1086,24 @@ void parse_room(FILE * fl, int virtual_nr, int virtual)
   struct extra_descr_data *new_descr;
   char letter;
 
-  if (virtual)
-     {virtual_nr = zone_table[zone].top;
+  if (Virtual)
+     {Virtual_nr = zone_table[zone].top;
      }
 
-  sprintf(buf2, "room #%d%s", virtual_nr,virtual ? "(virtual)" : "");
+  sprintf(buf2, "room #%d%s", Virtual_nr,Virtual ? "(Virtual)" : "");
 
-  if (virtual_nr <= (zone ? zone_table[zone - 1].top : -1))
-     {log("SYSERR: Room #%d is below zone %d.", virtual_nr, zone);
+  if (Virtual_nr <= (zone ? zone_table[zone - 1].top : -1))
+     {log("SYSERR: Room #%d is below zone %d.", Virtual_nr, zone);
       exit(1);
      }
-  while (virtual_nr > zone_table[zone].top)
+  while (Virtual_nr > zone_table[zone].top)
         if (++zone > top_of_zone_table)
-           {log("SYSERR: Room %d is outside of any zone.", virtual_nr);
+           {log("SYSERR: Room %d is outside of any zone.", Virtual_nr);
             exit(1);
            }
   world[room_nr].zone   = zone;
-  world[room_nr].number = virtual_nr;
-  if (virtual)
+  world[room_nr].number = Virtual_nr;
+  if (Virtual)
      {world[room_nr].name   = str_dup("Виртуальная комната");
       world[room_nr].description = str_dup("Похоже, здесь Вам делать нечего.");
       world[room_nr].room_flags.flags[0]  = 0;
@@ -1118,13 +1118,13 @@ void parse_room(FILE * fl, int virtual_nr, int virtual)
 
       if (!get_line(fl, line))
          {log("SYSERR: Expecting roomflags/sector type of room #%d but file ended!",
-                  virtual_nr);
+                  Virtual_nr);
           exit(1);
          }
 
       if (sscanf(line, " %d %s %d ", t, flags, t + 2) != 3)
          {log("SYSERR: Format error in roomflags/sector type of room #%d",
-                  virtual_nr);
+                  Virtual_nr);
           exit(1);
          }
       /* t[0] is the zone number; ignored with the zone-file system */
@@ -1146,12 +1146,12 @@ void parse_room(FILE * fl, int virtual_nr, int virtual)
       world[room_nr].dir_option[i] = NULL;
 
   world[room_nr].ex_description = NULL;
-  if (virtual)
+  if (Virtual)
      {top_of_world = room_nr++;
       return;
      }
 
-  sprintf(buf,"SYSERR: Format error in room #%d (expecting D/E/S)",virtual_nr);
+  sprintf(buf,"SYSERR: Format error in room #%d (expecting D/E/S)",Virtual_nr);
 
   for (;;)
       {if (!get_line(fl, line))
@@ -4260,7 +4260,7 @@ ACMD(do_remort)
 }
 
 
-/* returns the real number of the room with given virtual number */
+/* returns the real number of the room with given Virtual number */
 room_rnum real_room(room_vnum vnum)
 {
   room_rnum bot, top, mid;
@@ -4284,7 +4284,7 @@ room_rnum real_room(room_vnum vnum)
 
 
 
-/* returns the real number of the monster with given virtual number */
+/* returns the real number of the monster with given Virtual number */
 mob_rnum real_mobile(mob_vnum vnum)
 {
   mob_rnum bot, top, mid;
@@ -4309,7 +4309,7 @@ mob_rnum real_mobile(mob_vnum vnum)
 
 
 
-/* returns the real number of the object with given virtual number */
+/* returns the real number of the object with given Virtual number */
 obj_rnum real_object(obj_vnum vnum)
 {
   obj_rnum bot, top, mid;

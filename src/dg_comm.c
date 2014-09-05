@@ -139,7 +139,7 @@ void sub_write(char *arg, char_data *ch, byte find_invis, int targets)
 	    type[i] = *p;
 	    *s = '\0';
 	    p = any_one_name(++p, name);
-	    (char_data *)otokens[i] =
+	    otokens[i] = // prool
 		find_invis ? get_char(name) : get_char_room_vis(ch, name);
 	    tokens[++i] = ++s;
 	    break;
@@ -149,7 +149,7 @@ void sub_write(char *arg, char_data *ch, byte find_invis, int targets)
 	    type[i] = *p;
 	    *s = '\0';
 	    p = any_one_name(++p, name);
-	    (obj_data *)otokens[i] =
+	    otokens[i] = // prool
            find_invis ? (obj = get_obj(name)) :
                                ((obj = get_obj_in_list_vis(ch, name,
 				                 world[IN_ROOM(ch)].contents)) ? obj :
@@ -157,7 +157,7 @@ void sub_write(char *arg, char_data *ch, byte find_invis, int targets)
 				                 ch->equipment, &tmp)) ?
 		                        obj :
 		                         (obj = get_obj_in_list_vis(ch, name, ch->carrying)));
-	    (obj_data *)otokens[i] = obj;
+	    otokens[i] = obj; // prool
 	    tokens[++i] = ++s;
 	    break;
 

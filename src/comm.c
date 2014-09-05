@@ -10,6 +10,8 @@
 
 #define __COMM_C__
 
+#include <unistd.h> // prool
+
 #include "conf.h"
 #include "sysdep.h"
 

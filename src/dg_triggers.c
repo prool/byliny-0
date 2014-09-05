@@ -37,7 +37,7 @@ extern char *dirs[];
 
 /* external functions from scripts.c */
 void add_var(struct trig_var_data **var_list, char *name, char *value, long id);
-int script_driver(const void *go, trig_data *trig, int type, int mode);
+int script_driver(/*const*/ void *, trig_data *, int, int); // prool
 char *matching_quote(char *p);
 char *str_str(char *cs, char *ct);
 

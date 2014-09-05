@@ -90,7 +90,7 @@ void weather_and_time(int mode)
      weather_change();
 }
 
-const int sunrise[][2] =
+extern const int sunrise[][2] = // prool
 { {8,17},
   {8,18},
   {7,19},

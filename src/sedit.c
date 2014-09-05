@@ -92,12 +92,12 @@ void sedit_save_to_disk(int zone);
 void copy_shop(struct shop_data *tshop, struct shop_data *fshop);
 void copy_list(int **tlist, int *flist);
 void copy_type_list(struct shop_buy_data **tlist, struct shop_buy_data *flist);
-void sedit_add_to_type_list(struct shop_buy_data **list, struct shop_buy_data *new);
+void sedit_add_to_type_list(struct shop_buy_data **list, struct shop_buy_data *); // prool
 void sedit_remove_from_type_list(struct shop_buy_data **list, int num);
 void free_shop_strings(struct shop_data *shop);
 void free_type_list(struct shop_buy_data **list);
 void free_shop(struct shop_data *shop);
-void sedit_modify_string(char **str, char *new);
+void sedit_modify_string(char **str, char *);
 
 /*
  * External functions.
@@ -313,7 +313,7 @@ void sedit_remove_from_type_list(struct shop_buy_data **list, int num)
 
 /*-------------------------------------------------------------------*/
 
-void sedit_add_to_type_list(struct shop_buy_data **list, struct shop_buy_data *new)
+void sedit_add_to_type_list(struct shop_buy_data **list, struct shop_buy_data *New)
 {
   int i, num_items;
   struct shop_buy_data *nlist;
@@ -331,7 +331,7 @@ void sedit_add_to_type_list(struct shop_buy_data **list, struct shop_buy_data *n
 
   for (i = 0; i < num_items; i++)
       nlist[i] = (*list)[i];
-  nlist[num_items]          = *new;
+  nlist[num_items]          = *New;
   nlist[num_items + 1].type = -1;
 
   /*
@@ -343,7 +343,7 @@ void sedit_add_to_type_list(struct shop_buy_data **list, struct shop_buy_data *n
 
 /*-------------------------------------------------------------------*/
 
-void sedit_add_to_int_list(int **list, int new)
+void sedit_add_to_int_list(int **list, int New)
 {
   int i, num_items, *nlist;
 
@@ -360,7 +360,7 @@ void sedit_add_to_int_list(int **list, int new)
 
   for (i = 0; i < num_items; i++)
       nlist[i] = (*list)[i];
-  nlist[num_items]     = new;
+  nlist[num_items]     = New;
   nlist[num_items + 1] = -1;
 
   /*
@@ -480,20 +480,20 @@ int real_shop(int vshop_num)
 /*
  * Generic string modifyer for shop keeper messages.
  */
-void sedit_modify_string(char **str, char *new)
+void sedit_modify_string(char **str, char *New)
 {
   char *pointer;
 
   /*
    * Check the '%s' is present, if not, add it.
    */
-  if (*new != '%') 
+  if (*New != '%') 
      {strcpy(buf, "%s ");
-      strcat(buf, new);
+      strcat(buf, New);
       pointer = buf;
      } 
   else
-     pointer = new;
+     pointer = New;
 
   if (*str)
      free(*str);

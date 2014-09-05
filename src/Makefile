@@ -1,14 +1,17 @@
-# makefile for cygwin/windows environment. by prool (www.prool.kharkov.org)
-# 19-auh-2010
+# makefile for debian 6.0. by prool (www.prool.kharkov.org)
+# gcc (Debian 4.4.5-8) 4.4.5
+# 30-aug-2014
+
+# tested under Debain 6.0, cygwin
 
 # C compiler to use
-CC = gcc
+CC = g++
 
 # Path to cxref utility
 CXREF = cxref
 
 # Any special flags you want to pass to the compiler
-MYFLAGS = -Wall -g
+MYFLAGS = -Wall -g -fpermissive
 
 #flags for profiling (see hacker.doc for more information)
 PROFILE = 
@@ -53,7 +56,7 @@ all:
 .accepted:
 	@./licheck less
 
-utils: .accepted
+utils:
 	(cd util; $(MAKE) all)
 circle:
 	$(MAKE) $(BINDIR)/circle

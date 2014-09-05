@@ -50,7 +50,7 @@ extern const char *dirs[];
 void sub_write(char *arg, char_data *ch, byte find_invis, int targets);
 void asciiflag_conv(char *flag, void *value);
 room_data *get_room(char *name);
-void char_dam_message(struct char_data *ch, struct char_data *victim);
+// void char_dam_message(struct char_data *ch, struct char_data *victim); // prool
 struct obj_data *get_obj_by_char(struct char_data *ch, char *name);
 /*
  * Local functions.

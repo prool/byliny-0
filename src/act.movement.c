@@ -57,7 +57,7 @@ ACMD(do_sleep);
 ACMD(do_wake);
 ACMD(do_follow);
 
-const int Reverse[NUM_OF_DIRS] = {2,3,0,1,5,4};
+extern const int Reverse[NUM_OF_DIRS] = {2,3,0,1,5,4}; // prool
 const char *DirIs[] =
 {
   "север",
