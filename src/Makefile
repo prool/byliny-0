@@ -35,7 +35,8 @@ OBJFILES = act.comm.o act.informative.o act.item.o act.movement.o \
 	spec_procs.o spell_parser.o spells.o utils.o weather.o \
 	redit.o oedit.o zedit.o medit.o sedit.o \
 	dg_comm.o dg_db_scripts.o dg_event.o dg_handler.o dg_mobcmd.o \
-	dg_misc.o dg_objcmd.o dg_scripts.o dg_triggers.o dg_wldcmd.o dg_olc.o
+	dg_misc.o dg_objcmd.o dg_scripts.o dg_triggers.o dg_wldcmd.o dg_olc.o \
+	prool.o
 
 CXREF_FILES = act.comm.c act.informative.c act.item.c act.movement.c \
 	act.offensive.c act.other.c act.social.c act.wizard.c alias.c ban.c \
@@ -45,7 +46,8 @@ CXREF_FILES = act.comm.c act.informative.c act.item.c act.movement.c \
 	spec_procs.c spell_parser.c spells.c utils.c weather.c \
 	redit.c oedit.c zedit.c medit.c sedit.c \
 	dg_comm.c dg_db_scripts.c dg_event.c dg_handler.c dg_mobcmd.c \
-	dg_misc.c dg_objcmd.c dg_scripts.c dg_triggers.c dg_wldcmd.c dg_olc.c
+	dg_misc.c dg_objcmd.c dg_scripts.c dg_triggers.c dg_wldcmd.c dg_olc.c \
+	prool.c
 
 default: all
 

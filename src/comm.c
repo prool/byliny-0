@@ -257,7 +257,7 @@ int main(int argc, char **argv)
   port = DFLT_PORT;
   dir = DFLT_DIR;
 
-  printf("prool: main start progname=%s\n",*argv); // prool
+//  printf("prool: main start progname=%s\n",*argv); // prool
 
   while ((pos < argc) && (*(argv[pos]) == '-')) {
     switch (*(argv[pos] + 1)) {

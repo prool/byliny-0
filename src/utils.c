@@ -8,7 +8,11 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
+#define BUFLEN 512 // prool
+
 #include <unistd.h> // prool
+
+#include "prool.h" // prool
 
 #include "conf.h"
 #include "sysdep.h"
@@ -184,8 +188,9 @@ void log_death_trap(struct char_data * ch)
 void basic_mud_log(const char *format, ...)
 {
   va_list args;
+  char buffer[BUFLEN], buffer_o[BUFLEN*2];
+#if 1 // prool: 1 - logging, 0 - no logging
   time_t ct = time(0);
-#if 0 // prool: no log :)
   char *time_s = asctime(localtime(&ct));
 
   if (logfile == NULL)
@@ -198,7 +203,13 @@ void basic_mud_log(const char *format, ...)
   fprintf(logfile, "%-15.15s :: ", time_s + 4);
 
   va_start(args, format);
+#if 0 // prool: 0 - normal output, 0 - UTF-8 output (for cygwin)
   vfprintf(logfile, format, args);
+#else
+  vsnprintf(buffer, BUFLEN, format, args);
+  koi_to_utf8(buffer, buffer_o);
+  fprintf(logfile, buffer_o);
+#endif
   va_end(args);
 
   fprintf(logfile, "\n");
