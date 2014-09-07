@@ -44,7 +44,7 @@ void koi_to_utf8(char *str_i, char *str_o)
 		return;
 	}
 	len_i = strlen(str_i);
-	for(i=0;i<len_o;i++) *str_o=0;
+	//for(i=0;i<len_o;i++) *str_o=0;
 	if ((i=iconv(cd, &str_i, &len_i, &str_o, &len_o)) == (size_t) - 1)
 	{
 		printf("koi_to_utf8: iconv error\n");
