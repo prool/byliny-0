@@ -34,8 +34,9 @@ void utf8_to_koi(char *str_i, char *str_o)
 void koi_to_utf8(char *str_i, char *str_o)
 {
 	iconv_t cd;
-	size_t len_i, len_o = BUFLEN;
 	size_t i;
+	size_t len_i = BUFLEN;
+	size_t len_o = BUFLEN*2;
 
 	if ((cd = iconv_open("UTF-8", "KOI8-R")) == (iconv_t) - 1)
 	{
@@ -43,6 +44,7 @@ void koi_to_utf8(char *str_i, char *str_o)
 		return;
 	}
 	len_i = strlen(str_i);
+	for(i=0;i<len_o;i++) *str_o=0;
 	if ((i=iconv(cd, &str_i, &len_i, &str_o, &len_o)) == (size_t) - 1)
 	{
 		printf("koi_to_utf8: iconv error\n");
@@ -107,12 +109,6 @@ void win_to_utf8(char *str_i, char *str_o)
 		printf("win_to_utf8: iconv_close error\n");
 		return;
 	}
-}
-
-void fromwin (char *str)
-{char buf [BUFLEN];
-win_to_utf8(str,buf);
-strcpy(str,buf);
 }
 
 void outhex(char *str)

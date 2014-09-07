@@ -8,10 +8,7 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-#define BUFLEN 512 // prool
-
 #include <unistd.h> // prool
-
 #include "prool.h" // prool
 
 #include "conf.h"
@@ -188,10 +185,13 @@ void log_death_trap(struct char_data * ch)
 void basic_mud_log(const char *format, ...)
 {
   va_list args;
+  int i;
   char buffer[BUFLEN], buffer_o[BUFLEN*2];
 #if 1 // prool: 1 - logging, 0 - no logging
   time_t ct = time(0);
   char *time_s = asctime(localtime(&ct));
+
+  for (i=0;i<BUFLEN;i++) {buffer[i]=0; buffer_o[2*i]=0; buffer_o[2*i+1]=0;}
 
   if (logfile == NULL)
     puts("SYSERR: Using log() before stream was initialized!");
