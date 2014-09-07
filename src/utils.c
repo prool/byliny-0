@@ -185,6 +185,7 @@ void basic_mud_log(const char *format, ...)
 {
   va_list args;
   time_t ct = time(0);
+#if 0 // prool: no log :)
   char *time_s = asctime(localtime(&ct));
 
   if (logfile == NULL)
@@ -202,6 +203,7 @@ void basic_mud_log(const char *format, ...)
 
   fprintf(logfile, "\n");
   fflush(logfile);
+#endif
 }
 
 

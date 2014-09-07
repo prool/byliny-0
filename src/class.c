@@ -4163,11 +4163,11 @@ void init_spell_levels(void)
 					  continue;
               if (i[2])
                  {mspell_level(sp_num, 1 << j, i[2]);
-                  log("LEVEL set '%s' classes %x value %d",name,j,i[2]);
+                  //log("LEVEL set '%s' classes %x value %d",name,j,i[2]); //prool
                  }
               if (i[1])
                  {mspell_slot (sp_num, 1 << j, i[1]);
-                  log("SLOT set '%s' classes %x value %d",name,j,i[1]);
+                  //log("SLOT set '%s' classes %x value %d",name,j,i[1]);//prool
                  }
              }
         }
@@ -4228,7 +4228,7 @@ void init_spell_levels(void)
              spell_create[sp_num].items.items[1] = i[1];
              spell_create[sp_num].items.items[2] = i[2];
              spell_create[sp_num].items.rnumber  = i[3];
-             log("CREATE items FOR MAGIC '%s'", spell_name(sp_num));
+             //log("CREATE items FOR MAGIC '%s'", spell_name(sp_num)); // prool
             }
          else
          if (!strn_cmp(line3,"runes",c))
@@ -4236,7 +4236,7 @@ void init_spell_levels(void)
              spell_create[sp_num].runes.items[1] = i[1];
              spell_create[sp_num].runes.items[2] = i[2];
              spell_create[sp_num].runes.rnumber  = i[3];
-             log("CREATE runes FOR MAGIC '%s'", spell_name(sp_num));
+             // log("CREATE runes FOR MAGIC '%s'", spell_name(sp_num)); // prool
             }
          else
             {log("Unknown items option : %s", line3);

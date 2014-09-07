@@ -20,7 +20,9 @@
 *.i*86
 *.x86_64
 *.hex
-players.lst
 .crash
 bin/circle
-lib/plrs/players.*
+lib/plrs/players.lst
+lib/plrs/*
+lib/plrobjs/*
+players.lst

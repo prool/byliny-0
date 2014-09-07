@@ -492,6 +492,9 @@ void boot_db(void)
   init_guilds();
 
   log("Boot db -- DONE.");
+
+  printf("prool: test\n"); // prool
+
 }
 
 
