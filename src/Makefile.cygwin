@@ -18,7 +18,7 @@ PROFILE =
 
 BINDIR = ../bin
 
-CFLAGS = -g -O2 $(MYFLAGS) $(PROFILE)
+CFLAGS = -g -O2 $(MYFLAGS) $(PROFILE) -DCYGWIN
 
 #LIBS =  -lsocket -lnsl
 LIBS =  -lcrypt -liconv

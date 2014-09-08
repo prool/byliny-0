@@ -493,7 +493,7 @@ void boot_db(void)
 
   log("Boot db -- DONE.");
 
-  printf("prool: test\n"); // prool
+//  printf("prool: test\n"); // prool
 
 }
 

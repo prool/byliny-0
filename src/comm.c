@@ -11,6 +11,7 @@
 #define __COMM_C__
 
 #include <unistd.h> // prool
+#include "prool.h" // prool
 
 #include "conf.h"
 #include "sysdep.h"
@@ -119,6 +120,9 @@ struct timeval null_time;	/* zero-valued time structure */
 FILE *logfile = NULL;		/* Where to send the log messages. */
 int dg_act_check;		/* toggle for act_trigger */
 unsigned long dg_global_pulse = 0; /* number of pulses since game start */
+
+int codetable; // prool
+int logging; // prool
 
 /* functions in this file */
 RETSIGTYPE reread_wizlists(int sig);
@@ -243,6 +247,41 @@ int main(int argc, char **argv)
   plant_magic(buf1);
   plant_magic(buf2);
   plant_magic(arg);
+
+// prool: config file
+FILE *fconfig;
+char string[BUFLEN];
+
+#ifdef CYGWIN
+codetable=UTF;
+#else
+codetable=KOI;
+#endif
+
+logging=1;
+
+fconfig=fopen("prool.cfg","r");
+if (fconfig)
+	{
+	printf("prool.cfg open\n");
+	while (!feof(fconfig))
+		{char *pp;
+		string[0]=0;
+		fgets(string,BUFLEN,fconfig);
+		pp=strchr(string,'\n');
+		if (pp) *pp=0;
+		printf("`%s'\n", string);
+		if (!strcmp(string,"test")) printf("TEST OK!\n");
+		else if (!strcmp(string,"utf")) codetable=UTF;
+		else if (!strcmp(string,"koi")) codetable=KOI;
+		else if (!strcmp(string,"log")) logging=1;
+		else if (!strcmp(string,"nolog")) logging=0;
+		}
+	}
+else
+	{
+	printf("prool.cfg not open\n");
+	}
 
 #ifdef CIRCLE_MACINTOSH
   /*

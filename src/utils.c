@@ -187,7 +187,8 @@ void basic_mud_log(const char *format, ...)
   va_list args;
   int i;
   char buffer[BUFLEN], buffer_o[BUFLEN*2];
-#if 1 // prool: 1 - logging, 0 - no logging
+if (logging)
+  {
   time_t ct = time(0);
   char *time_s = asctime(localtime(&ct));
 
@@ -203,18 +204,20 @@ void basic_mud_log(const char *format, ...)
   fprintf(logfile, "%-15.15s :: ", time_s + 4);
 
   va_start(args, format);
-#if 0 // prool: 0 - normal output, 0 - UTF-8 output (for cygwin)
-  vfprintf(logfile, format, args);
-#else
-  vsnprintf(buffer, BUFLEN, format, args);
-  koi_to_utf8(buffer, buffer_o);
-  fprintf(logfile, buffer_o);
-#endif
+if (codetable==UTF)
+	{
+  	vsnprintf(buffer, BUFLEN, format, args);
+  	koi_to_utf8(buffer, buffer_o);
+  	fprintf(logfile, buffer_o);
+	}
+else
+  	vfprintf(logfile, format, args);
+
   va_end(args);
 
   fprintf(logfile, "\n");
   fflush(logfile);
-#endif
+  }
 }
 
 

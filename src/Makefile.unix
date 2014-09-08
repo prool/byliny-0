@@ -1,7 +1,7 @@
 # makefile for debian 6.0. by prool (www.prool.kharkov.org)
 # gcc (Debian 4.4.5-8) 4.4.5
 
-# tested under Debian, Centos
+# tested under Debian, Centos, Ubuntu
 
 # C compiler to use
 CC = g++
