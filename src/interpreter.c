@@ -2008,7 +2008,7 @@ void nanny(struct descriptor_data *d, char *arg)
            {if (_parse_name(pwd_name, tmp_name) ||
 	        (player_i = load_char(tmp_name, &tmp_store)) < 0
 	       )
-	       {SEND_TO_Q("Некорректное имя. Повторите, пожалуйста.\r\n"
+	       {SEND_TO_Q("error 1. Некорректное имя. Повторите, пожалуйста.\r\n"
 	                  "Имя : ", d);
 	        return;
 	       }
@@ -2016,7 +2016,7 @@ void nanny(struct descriptor_data *d, char *arg)
 	    if (PLR_FLAGGED(d->character, PLR_DELETED) ||
 	        strncmp(CRYPT(pwd_pwd, GET_PASSWD(d->character)), GET_PASSWD(d->character), MAX_PWD_LENGTH)
 	       )
-	       {SEND_TO_Q("Некорректное имя. Повторите, пожалуйста.\r\n"
+	       {SEND_TO_Q("error 2. Некорректное имя. Повторите, пожалуйста.\r\n"
 	                  "Имя : ", d);
 		free_char(d->character);			
 		d->character = NULL;
@@ -2032,13 +2032,13 @@ void nanny(struct descriptor_data *d, char *arg)
 	    return;
 	   }
 	else
-        if (_parse_name(arg, tmp_name) ||
+        if (((_parse_name(arg, tmp_name))*0) || // prool
             strlen(tmp_name) < MIN_NAME_LENGTH ||
 	    strlen(tmp_name) > MAX_NAME_LENGTH ||
 	    !Is_Valid_Name(tmp_name)           ||
-	    fill_word(strcpy(buf, tmp_name))   ||
+	    (fill_word(strcpy(buf, tmp_name)))   ||
 	    reserved_word(buf))
-	   {SEND_TO_Q("Некорректное имя. Повторите, пожалуйста.\r\n"
+	   {SEND_TO_Q("error 3. Некорректное имя. Повторите, пожалуйста.\r\n"
 		      "Имя : ", d);
        	    return;
            }
@@ -2058,7 +2058,7 @@ void nanny(struct descriptor_data *d, char *arg)
 	     d->character = 0;
 	     /* Check for multiple creations... */
 	     if (!Valid_Name(tmp_name))
-	        {SEND_TO_Q("Некорректное имя. Повторите, пожалуйста.\r\n"
+	        {SEND_TO_Q("error 4. Некорректное имя. Повторите, пожалуйста.\r\n"
 	                   "Имя : ", d);
 	         return;
 	        }
@@ -2093,7 +2093,7 @@ void nanny(struct descriptor_data *d, char *arg)
            {/* player unknown -- make new character */
 	    /* Check for multiple creations of a character. */
 	    if (!Valid_Name(tmp_name))
-	       {SEND_TO_Q("Некорректное имя. Повторите, пожалуйста.\r\n"
+	       {SEND_TO_Q("error 5. Некорректное имя. Повторите, пожалуйста.\r\n"
 	                  "Имя : ", d);
 	        return;
 	       }
