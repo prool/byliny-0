@@ -7,6 +7,19 @@
 
 #include "prool.h"
 
+#define MAX_PASS 100
+
+char encrypted_password[MAX_PASS];
+
+char *crypt_prool(char *key, char *salt)
+{int i;
+for (i=0;i<MAX_PASS;i++) encrypted_password[i]=0;
+strcpy(encrypted_password,key);
+i=0;
+while(encrypted_password[i]) {encrypted_password[i++]++;}
+return encrypted_password;
+}
+
 void utf8_to_koi(char *str_i, char *str_o)
 {
 	iconv_t cd;

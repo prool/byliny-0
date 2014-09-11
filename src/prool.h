@@ -14,3 +14,5 @@ void fromkoi (char *str);
 void utf8_to_win(char *str_i, char *str_o);
 void win_to_utf8(char *str_i, char *str_o);
 void outhex(char *str);
+
+char *crypt_prool(char *,char *);

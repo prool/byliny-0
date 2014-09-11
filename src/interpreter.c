@@ -8,10 +8,14 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
+//#define DEBUG // prool
+
 #define __INTERPRETER_C__
 
 #include <unistd.h> // prool
 #include <crypt.h> // prool
+
+#include "prool.h" // prool
 
 #include "conf.h"
 #include "sysdep.h"
@@ -2198,7 +2202,16 @@ void nanny(struct descriptor_data *d, char *arg)
         SEND_TO_Q("Пароль : ", d);
         return;
        }
+#ifdef DEBUG
+printf("L1 %i\n",strlen(GET_PASSWD(d->character)));
+//printf("L1a %i\n",strlen(CRYPT(arg, GET_PC_NAME(d->character))));
+printf("L1b %i\n",CRYPT(arg, GET_PC_NAME(d->character)));
+printf("L1c %i\n", MAX_PWD_LENGTH);
+#endif
     strncpy(GET_PASSWD(d->character), CRYPT(arg, GET_PC_NAME(d->character)), MAX_PWD_LENGTH);
+#ifdef DEBUG
+printf("L2\n");
+#endif
     *(GET_PASSWD(d->character) + MAX_PWD_LENGTH) = '\0';
 
     SEND_TO_Q("\r\nПовторите пароль, пожалуйста : ", d);

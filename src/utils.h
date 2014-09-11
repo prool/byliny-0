@@ -1043,7 +1043,11 @@ int awaking(struct char_data *ch, int mode);
 #if defined(NOCRYPT) || !defined(CIRCLE_CRYPT)
 #define CRYPT(a,b) (a)
 #else
+#if defined(PROOLCRYPT)
+#define CRYPT(a,b) ((char *) crypt_prool((a),(b)))
+#else
 #define CRYPT(a,b) ((char *) crypt((a),(b)))
+#endif
 #endif
 
 #define SENDOK(ch)	(((ch)->desc || SCRIPT_CHECK((ch), MTRIG_ACT)) && \

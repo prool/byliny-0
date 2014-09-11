@@ -21,7 +21,7 @@ PROFILE =
 
 BINDIR = ../bin
 
-CFLAGS = -g -O2 $(MYFLAGS) $(PROFILE)
+CFLAGS = -g -O2 $(MYFLAGS) $(PROFILE) -DPROOLCRYPT
 
 #LIBS =  -lsocket -lnsl
 LIBS =  -lcrypt

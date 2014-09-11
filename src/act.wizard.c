@@ -11,6 +11,8 @@
 #include <unistd.h> // prool
 #include <crypt.h> // prool
 
+#include "prool.h" // prool
+
 #include "conf.h"
 #include "sysdep.h"
 
