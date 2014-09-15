@@ -26,4 +26,5 @@ lib/plrs/players.lst
 lib/plrs/*
 lib/plrobjs/*
 players.lst
+*.log
 aaa
