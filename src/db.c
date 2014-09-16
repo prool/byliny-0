@@ -10,6 +10,8 @@
 
 #define __DB_C__
 
+#include "prool.h" // prool
+
 #include "conf.h"
 #include "sysdep.h"
 #include "dirent.h"
@@ -4056,12 +4058,12 @@ void init_char(struct char_data * ch)
      }
   else
      switch(GET_RACE(ch))
-     { case CLASS_SEVERANE: start_room = 4056; break;
-       case CLASS_POLANE:   start_room = 4056; break;
-       case CLASS_KRIVICHI: start_room = 4056; break;
-       case CLASS_VATICHI:  start_room = 4056; break;
-       case CLASS_VELANE:   start_room = 4056; break;
-       case CLASS_DREVLANE: start_room = 4056; break;
+     { case CLASS_SEVERANE: start_room = START_ROOM; break;
+       case CLASS_POLANE:   start_room = START_ROOM; break;
+       case CLASS_KRIVICHI: start_room = START_ROOM; break;
+       case CLASS_VATICHI:  start_room = START_ROOM; break;
+       case CLASS_VELANE:   start_room = START_ROOM; break;
+       case CLASS_DREVLANE: start_room = START_ROOM; break;
      }
   set_title(ch, NULL);
   ch->player.short_descr = NULL;

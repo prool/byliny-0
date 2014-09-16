@@ -1,9 +1,11 @@
 // prool's recoding functions
 // proolix@gmail.com www.prool.kharkov.org mud.kharkov.org
 
-#define BUFLEN 512 // prool
+#define BUFLEN 512
 #define UTF 0
 #define KOI 1
+
+#define START_ROOM 9900
 
 extern int codetable;
 extern int logging;

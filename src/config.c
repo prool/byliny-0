@@ -10,6 +10,8 @@
 
 #define __CONFIG_C__
 
+#include "prool.h" // prool
+
 #include "conf.h"
 #include "sysdep.h"
 
@@ -155,7 +157,7 @@ int rent_file_timeout = 30;
 /* ROOM NUMBERS */
 
 /* virtual number of room that mortals should enter at */
-room_vnum mortal_start_room = 4056;  /* tavern in village */
+room_vnum mortal_start_room = START_ROOM;  /* tavern in village */
 
 /* virtual number of room that immorts should enter at by default */
 room_vnum immort_start_room = 100;  /* place  in castle */
@@ -325,11 +327,11 @@ int calc_loadroom(struct char_data *ch)
   else
   if (GET_LEVEL(ch) < 15)
      {switch(GET_RACE(ch))
-      { case CLASS_SEVERANE: return 4056; break;
+      { case CLASS_SEVERANE: return START_ROOM; break;
         case CLASS_POLANE:   return 5000; break;
-        case CLASS_KRIVICHI: return 4056; break;
+        case CLASS_KRIVICHI: return START_ROOM; break;
         case CLASS_VATICHI:  return 5000; break;
-        case CLASS_VELANE:   return 4056; break;
+        case CLASS_VELANE:   return START_ROOM; break;
         case CLASS_DREVLANE: return 5000; break;   
       }
      }
