@@ -1954,7 +1954,9 @@ char *parse_object(FILE * obj_f, int nr)
             case 'T':  /* DG triggers */
                     dg_obj_trigger(line, &obj_proto[i]);
                     break;
-
+	    case 'V':
+	    case 'R':
+	    case 'M': break; // prool
             case '$':
             case '#':
                     check_object(&obj_proto[i]);
