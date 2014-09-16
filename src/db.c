@@ -2065,7 +2065,7 @@ void load_zones(FILE * fl, char *zonename)
       ZCMD.if_flag = tmp;
 
       if (error)
-         {log("SYSERR: Format error in %s, line %d: '%s'", zname, line_num, buf);
+         {log("SYSERR: :-( Format error in %s, line %d: '%s'", zname, line_num, buf); // prool
           exit(1);
          }
       ZCMD.line = line_num;
