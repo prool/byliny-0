@@ -858,6 +858,10 @@ void load_otrigger(obj_data *obj)
 {
   trig_data *t;
 
+	return; // prool: tempoparily disable all trigs
+
+  if (!obj) return; // prool
+
   if (!SCRIPT_CHECK(obj, OTRIG_LOAD))
      return;
 
