@@ -901,9 +901,10 @@ void game_loop(socket_t mother_desc)
     /* Print prompts for other descriptors who had no other output */
     for (d = descriptor_list; d; d = d->next)
         {if (!d->has_prompt)
-            {sprintf(buf,"\r\n%s",make_prompt(d));
-             from_koi(buf, d->keytable);
-             write_to_descriptor(d->descriptor, buf);
+            {sprintf(buf,"\r\n%s",make_prompt(d)); // tyt byl prool:
+             //from_koi(buf, d->keytable);
+             //write_to_descriptor(d->descriptor, buf);
+		SEND_TO_Q(make_prompt(d),d);
 	         d->has_prompt = 1;
             }
         }
@@ -1838,7 +1839,7 @@ int process_output(struct descriptor_data *t)
    default     : for(;*pi;*po = *pi, pi++, po++);
         break;
   }
-  //if (t->keytable!=KT_UTF8)  *po = '\0'; // prool
+  if (t->keytable!=KT_UTF8)  *po = '\0'; // prool
 
   if (t->has_prompt)		/* && !t->connected) */
     {result = write_to_descriptor(t->descriptor, o);
