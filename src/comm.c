@@ -296,7 +296,7 @@ else
   port = DFLT_PORT;
   dir = DFLT_DIR;
 
-//  printf("prool: main start progname=%s\n",*argv); // prool
+  printf("prool: main start progname=%s\n",*argv); // prool
 
   while ((pos < argc) && (*(argv[pos]) == '-')) {
     switch (*(argv[pos] + 1)) {
@@ -1838,7 +1838,7 @@ int process_output(struct descriptor_data *t)
    default     : for(;*pi;*po = *pi, pi++, po++);
         break;
   }
-  if (t->keytable!=KT_UTF8)  *po = '\0'; // prool
+  //if (t->keytable!=KT_UTF8)  *po = '\0'; // prool
 
   if (t->has_prompt)		/* && !t->connected) */
     {result = write_to_descriptor(t->descriptor, o);
