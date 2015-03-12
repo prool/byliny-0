@@ -277,6 +277,7 @@ if (fconfig)
 		else if (!strcmp(string,"log")) logging=1;
 		else if (!strcmp(string,"nolog")) logging=0;
 		}
+	fclose(fconfig);
 	}
 else
 	{
