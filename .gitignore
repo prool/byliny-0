@@ -28,3 +28,5 @@ lib/plrobjs/*
 players.lst
 *.log
 aaa
+*.org
+.fastboot

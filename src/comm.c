@@ -263,14 +263,14 @@ logging=1;
 fconfig=fopen("prool.cfg","r");
 if (fconfig)
 	{
-	printf("prool.cfg open\n");
+	//printf("prool.cfg open\n");
 	while (!feof(fconfig))
 		{char *pp;
 		string[0]=0;
 		fgets(string,BUFLEN,fconfig);
 		pp=strchr(string,'\n');
 		if (pp) *pp=0;
-		printf("`%s'\n", string);
+		//printf("`%s'\n", string);
 		if (!strcmp(string,"test")) printf("TEST OK!\n");
 		else if (!strcmp(string,"utf")) codetable=UTF;
 		else if (!strcmp(string,"koi")) codetable=KOI;
@@ -3104,7 +3104,7 @@ void setup_log(const char *filename, int fd)
   if (filename == NULL || *filename == '\0') {
     /* No filename, set us up with the descriptor we just opened. */
     logfile = s_fp;
-    puts("Using file descriptor for logging.");
+    //puts("Using file descriptor for logging."); // prool
     return;
   }
 
