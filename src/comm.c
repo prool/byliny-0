@@ -297,7 +297,8 @@ else
   port = DFLT_PORT;
   dir = DFLT_DIR;
 
-  printf("prool: main start progname=%s\n",*argv); // prool
+//  printf("prool: main start progname=%s\n",*argv); // prool
+printf("Byliny-0 MUD server started\n");
 
   while ((pos < argc) && (*(argv[pos]) == '-')) {
     switch (*(argv[pos] + 1)) {
@@ -374,7 +375,9 @@ else
   }
 
   /* All arguments have been parsed, try to open log file. */
-  setup_log(LOGNAME, STDERR_FILENO);
+
+  //printf("prool label 1\n");
+  setup_log("log/syslog"/*LOGNAME*/, STDERR_FILENO); // prool
 
   /*
    * Moved here to distinguish command line options and to show up
@@ -2572,6 +2575,7 @@ RETSIGTYPE checkpointing(int sig)
 RETSIGTYPE hupsig(int sig)
 {
   log("SYSERR: Received SIGHUP, SIGINT, or SIGTERM.  Shutting down...");
+  printf("SYSERR: Received SIGHUP, SIGINT, or SIGTERM.  Shutting down\n"); // prool
   exit(1);			/* perhaps something more elegant should
 				 * substituted */
 }
@@ -3085,7 +3089,8 @@ void setup_log(const char *filename, int fd)
 {
   FILE *s_fp;
 
-#if defined(__MWERKS__) || defined(__GNUC__)
+#if 0 // prool
+#if defined(__MWERKS__) || defined(__GNUC__) // tyt byl prool
   s_fp = stderr;
 #else
   if ((s_fp = fdopen(STDERR_FILENO, "w")) == NULL) {
@@ -3107,6 +3112,10 @@ void setup_log(const char *filename, int fd)
     //puts("Using file descriptor for logging."); // prool
     return;
   }
+#else
+s_fp=NULL; // prool
+#endif // prool
+//printf("filename=`%s'\n",filename); // prool
 
   /* We honor the default filename first. */
   if (open_logfile(filename, s_fp))
@@ -3127,10 +3136,10 @@ void setup_log(const char *filename, int fd)
 
 int open_logfile(const char *filename, FILE *stderr_fp)
 {
-  if (stderr_fp)	/* freopen() the descriptor. */
-    logfile = freopen(filename, "w", stderr_fp);
+  if (stderr_fp)	/* freopen() the descriptor. */ // tyt byl prool
+    {logfile = freopen(filename, "w", stderr_fp); /*printf("prool label 2\n");*/}
   else
-    logfile = fopen(filename, "w");
+    {logfile = fopen(filename, "w");  /*printf("prool label 2A\n");*/}
 
   if (logfile) {
     printf("Using log file '%s'%s.\n",
