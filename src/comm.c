@@ -77,7 +77,6 @@
 /* externs */
 extern struct ban_list_element *ban_list;
 extern int num_invalid;
-extern char *GREETINGS;
 extern const char *circlemud_version;
 extern int circle_restrict;
 extern int mini_mud;
@@ -1792,6 +1791,7 @@ int process_output(struct descriptor_data *t)
 {
   char i[MAX_SOCK_BUF], o[MAX_SOCK_BUF*2], *pi, *po;
   int  result, c;
+  int ii;
 
   pi = i;
   po = o;
@@ -1838,8 +1838,10 @@ int process_output(struct descriptor_data *t)
                        *(po++) = 255;
                       }
         break;
-   case KT_UTF8: koi_to_utf8(pi,po); // prool
-	break;
+   case KT_UTF8:
+		for (ii=0;ii<(MAX_SOCK_BUF*2); ii++) o[ii]=0; // clean output buffer
+		koi_to_utf8(pi,po); // prool
+		break;
    default     : for(;*pi;*po = *pi, pi++, po++);
         break;
   }

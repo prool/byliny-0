@@ -86,7 +86,6 @@ char *news = NULL;              /* mud news                      */
 long lastnews = 0;
 char *motd = NULL;              /* message of the day - mortals */
 char *imotd = NULL;             /* message of the day - immorts */
-char *GREETINGS = NULL;         /* opening credits screen       */
 char *help = NULL;              /* help screen                   */
 char *info = NULL;              /* info page                     */
 char *wizlist = NULL;           /* list of higher gods           */
@@ -240,8 +239,7 @@ ACMD(do_reboot)
   one_argument(argument, arg);
 
   if (!str_cmp(arg, "all") || *arg == '*')
-     {if (file_to_string_alloc(GREETINGS_FILE, &GREETINGS) == 0)
-         prune_crlf(GREETINGS);
+     {
       file_to_string_alloc(WIZLIST_FILE, &wizlist);
       file_to_string_alloc(IMMLIST_FILE, &immlist);
       file_to_string_alloc(NEWS_FILE, &news);
@@ -292,11 +290,6 @@ ACMD(do_reboot)
   else
   if (!str_cmp(arg, "background"))
      file_to_string_alloc(BACKGROUND_FILE, &background);
-  else
-  if (!str_cmp(arg, "greetings"))
-     {if (file_to_string_alloc(GREETINGS_FILE, &GREETINGS) == 0)
-         prune_crlf(GREETINGS);
-     }
   else
   if (!str_cmp(arg, "xhelp"))
      {if (help_table)
@@ -407,8 +400,6 @@ void boot_db(void)
   file_to_string_alloc(POLICIES_FILE, &policies);
   file_to_string_alloc(HANDBOOK_FILE, &handbook);
   file_to_string_alloc(BACKGROUND_FILE, &background);
-  if (file_to_string_alloc(GREETINGS_FILE, &GREETINGS) == 0)
-     prune_crlf(GREETINGS);
 
   log("Loading spell definitions.");
   mag_assign_spells();

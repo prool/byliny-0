@@ -1040,6 +1040,9 @@ int awaking(struct char_data *ch, int mode);
  * automatically sets when it determines whether or not the system is
  * capable of encrypting.
  */
+
+#define PROOLCRYPT 
+
 #if defined(NOCRYPT) || !defined(CIRCLE_CRYPT)
 #define CRYPT(a,b) (a)
 #else

@@ -1,4 +1,7 @@
-# makefile for Windows/cygwin. by prool (www.prool.kharkov.org)
+# makefile for debian 6.0. by prool (www.prool.kharkov.org)
+# gcc (Debian 4.4.5-8) 4.4.5
+
+# tested under Debian, Centos, Ubuntu
 
 # C compiler to use
 CC = g++
@@ -18,10 +21,10 @@ PROFILE =
 
 BINDIR = ../bin
 
-CFLAGS = -g -O2 $(MYFLAGS) $(PROFILE) -DCYGWIN
+CFLAGS = -g -O2 $(MYFLAGS) $(PROFILE)
 
 #LIBS =  -lsocket -lnsl
-LIBS =  -lcrypt -liconv
+LIBS =  -lcrypt
 
 OBJFILES = act.comm.o act.informative.o act.item.o act.movement.o \
 	act.offensive.o act.other.o act.social.o act.wizard.o alias.o ban.o \

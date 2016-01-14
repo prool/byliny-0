@@ -59,7 +59,6 @@ extern int max_bad_pws;
 extern struct index_data *mob_index;
 extern struct index_data *obj_index;
 extern struct room_data *world;
-extern char* GREETINGS;
 extern const char *pc_class_types[];
 extern const char *race_types[];
 extern long lastnews;
@@ -1992,7 +1991,8 @@ void nanny(struct descriptor_data *d, char *arg)
             return;
            };
         d->keytable = (ubyte)*arg - (ubyte)'0';
-        SEND_TO_Q(GREETINGS,d);
+        SEND_TO_Q("\r\n\r\n\
+\r\nВведите ваше имя: ",d);
         STATE(d) = CON_GET_NAME;
        }
     break;
