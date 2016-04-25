@@ -1577,15 +1577,30 @@ int find_name(char *name)
   return (-1);
 }
 
+int is_lat (char c) // prool
+{
+if ((c>='a') && (c<='z')) return 1;
+if ((c>='A') && (c<='Z')) return 1;
+return 0;
+}
 
 int _parse_name(char *arg, char *name)
 {
   int i;
 
+printf("prooldebug arg=%s\n", arg);
+
   /* skip whitespaces */
-  for (i = 0; (*name = (i ? LOWER(*arg) : UPPER(*arg))); arg++, i++, name++)
-      if (!a_isalpha(*arg) || *arg > 0)
+// prool:
+//  for (i = 0; (*name = (i ? LOWER(*arg) : UPPER(*arg))); arg++, i++, name++)
+  for (i = 0; (*name = (is_lat(*arg) ? (*arg) : (i ? LOWER(*arg) : UPPER(*arg)))); arg++, i++, name++)
+      if (!a_isalpha(*arg) || *arg /* > 0 */ ) // prool
+	{
+	printf("prooldebug name=%s\n", name);
          return (1);
+	}
+
+printf("prooldebug name=%s\n", name);
 
   if (!i)
      return (1);
@@ -1960,6 +1975,8 @@ void nanny(struct descriptor_data *d, char *arg)
   char   tmp_name[MAX_INPUT_LENGTH], pwd_name[MAX_INPUT_LENGTH], pwd_pwd[MAX_INPUT_LENGTH];
   struct char_file_u tmp_store;
 
+  int i1, i2, i3; // prool
+
   skip_spaces(&arg);
 
   switch (STATE(d))
@@ -2036,14 +2053,15 @@ void nanny(struct descriptor_data *d, char *arg)
 	    return;
 	   }
 	else
-        if (((_parse_name(arg, tmp_name))*0) || // prool
+        if (((i1=_parse_name(arg, tmp_name))*0) || // 0 - prool
             strlen(tmp_name) < MIN_NAME_LENGTH ||
 	    strlen(tmp_name) > MAX_NAME_LENGTH ||
-	    !Is_Valid_Name(tmp_name)           ||
-	    (fill_word(strcpy(buf, tmp_name)))   ||
-	    reserved_word(buf))
+	    // !Is_Valid_Name(tmp_name)           || // prool
+	    ((i2=fill_word(strcpy(buf, tmp_name))*0))   || // 0 - prool
+	    ((i3=reserved_word(buf))*0)) // 0 - prool
 	   {SEND_TO_Q("error 3. Некорректное имя. Повторите, пожалуйста.\r\n"
 		      "Имя : ", d);
+		printf("prooldebug. i1=%i i2=%i i3=%i tmp_name=%s\n", i1, i2, i3, tmp_name);
        	    return;
            }
 	else

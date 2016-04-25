@@ -88,6 +88,15 @@ __asm__ __volatile__(
 return __res;
 }
 
+#if 1 // 1 = prool
+inline char a_isalpha(char c)
+{
+if ((c>='a') && (c<='z')) return 1;
+if ((c>='A') && (c<='Z')) return 1;
+if (c>=192) return 1; // cyrillic in koi8-r
+return 0;
+}
+#else
 inline char a_isalpha(char c)
 {
 register char __res;
@@ -112,6 +121,7 @@ __asm__ __volatile__(
 	:"0" (c));
 return __res;
 }
+#endif
 
 inline char a_isalnum(char c)
 {
