@@ -1590,6 +1590,7 @@ int _parse_name(char *arg, char *name)
 
 printf("prooldebug arg=%s\n", arg);
 
+#if 0 // prool: 0 - proolfool mode, 1 - original mode
   /* skip whitespaces */
 // prool:
 //  for (i = 0; (*name = (i ? LOWER(*arg) : UPPER(*arg))); arg++, i++, name++)
@@ -1600,12 +1601,14 @@ printf("prooldebug arg=%s\n", arg);
          return (1);
 	}
 
+if (!i) return 1;
+#else
+strcpy(name,arg);
+#endif
+
 printf("prooldebug name=%s\n", name);
 
-  if (!i)
-     return (1);
-
-  return (0);
+return (0);
 }
 
 #define RECON		1
