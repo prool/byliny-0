@@ -2,6 +2,7 @@
 #include <stdio.h>
 */
 
+#if 0 // prool
 inline char a_isascii(char c)
 {
 register char __res;
@@ -87,8 +88,9 @@ __asm__ __volatile__(
 	:"0" (c));
 return __res;
 }
+#endif
 
-#if 1 // 1 = prool
+#if 1 // 1 = prool, 0 - orig
 inline char a_isalpha(char c)
 {
 if ((c>='a') && (c<='z')) return 1;
@@ -121,8 +123,9 @@ __asm__ __volatile__(
 	:"0" (c));
 return __res;
 }
-#endif
+#endif // prool
 
+#if 0 // prool
 inline char a_isalnum(char c)
 {
 register char __res;
@@ -220,6 +223,7 @@ __asm__ __volatile__(
 	:"0" (c));
 return __res;
 }
+#endif
 
 
 /*
