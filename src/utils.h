@@ -1061,6 +1061,7 @@ int awaking(struct char_data *ch, int mode);
 
 #define a_isspace(c) (strchr(" \f\n\r\t\v",(c)) != NULL)
 
+#if 0 // prool
 extern inline char a_isascii(char c)
 {
 register char __res;
@@ -1152,6 +1153,7 @@ __asm__ __volatile__(
 	:"0" (c));
 return __res;
 }
+#endif // prool
 
 #if 1 // 1 = prool
 
@@ -1189,6 +1191,7 @@ return __res;
 }
 #endif
 
+#if 0 // prool
 extern inline char a_isalnum(char c)
 {
 register char __res;
@@ -1290,3 +1293,5 @@ __asm__ __volatile__(
 	:"0" (c));
 return __res;
 }
+
+#endif // prool
